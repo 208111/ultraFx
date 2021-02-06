@@ -1,0 +1,8 @@
+.OPTION EXPLICIT
+.Set CabinetNameTemplate=TEST0.CAB
+.Set Cabinet=on
+.Set Compress=on
+"GFX"
+"STR"
+"uFxSys"
+
