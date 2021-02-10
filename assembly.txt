@@ -1,0 +1,79 @@
+
+00 - nop
+
+16 bit addresses
+01 - mov x16, y16
+02 - and
+03 - or
+04 - xor
+05 - not
+06 - shl
+07 - shr
+08 - inc
+09 - add
+0A - dec
+0B - sub
+0C - mul
+0D - div
+0E - imul
+0F - idiv
+10 - ife x, y, jmp
+11 - ifz
+12 - ifnz
+13 - ifa
+14 - ifb
+15 - ifg
+16 - ifl
+17 - ifae
+18 - ifbe
+19 - ifge
+1A - ifle
+1B - ifs
+1C - ifu
+1D - ifand
+1E - ifor
+1F - cpy (mov address to address)
+20 - jmp
+
+32 bit addresses
+21 - mov
+22 - and
+23 - or
+24 - xor
+25 - not
+26 - shl
+27 - shr
+28 - inc
+29 - add
+2A - dec
+2B - sub
+2C - mul
+2D - div
+2E - imul
+2F - idiv
+30 - ife
+31 - ifz
+32 - ifnz
+33 - ifa
+34 - ifb
+35 - ifg
+36 - ifl
+37 - ifae
+38 - ifbe
+39 - ifge
+3A - ifle
+3B - ifs
+3C - ifu
+3D - ifand
+3E - ifor
+3F - cpy
+40 - jmp
+
+7A - key
+7B - mouse
+7C - sleep
+7D - video / vid
+7E - sound
+7F - exit
+
+
