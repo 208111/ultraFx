@@ -106,6 +106,7 @@
       <SmallerTypeCheck>false</SmallerTypeCheck>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <AdditionalOptions>/Gs9999999 -Gm- -GR- -EHa- %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
@@ -123,7 +124,12 @@
       <SectionAlignment>
       </SectionAlignment>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+      <AdditionalDependencies>E:\D3D9\d3d9.lib;E:\D3D9\d3dx9.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <EnableUAC>false</EnableUAC>
     </Link>
+    <Manifest>
+      <AdditionalManifestFiles>muhManifest.manifest %(AdditionalManifestFiles)</AdditionalManifestFiles>
+    </Manifest>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -155,6 +161,7 @@
     <Image Include="Resource\COM_GFX_LD1.bmp" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resource\COM_SFX_ERR.wav" />
     <None Include="Resource\NULL.bmp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

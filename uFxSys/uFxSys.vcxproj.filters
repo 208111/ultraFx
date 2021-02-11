@@ -24,6 +24,7 @@
     <None Include="Resource\NULL.bmp">
       <Filter>Resources</Filter>
     </None>
+    <None Include="Resource\COM_SFX_ERR.wav" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="gaming.cpp" />

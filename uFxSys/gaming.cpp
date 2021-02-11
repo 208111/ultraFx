@@ -3,12 +3,9 @@
 #include "E:\D3D9\d3dx9.h"
 #include <Windows.h>
 #include <intrin.h>
-#include <cstdio>
 
 #include "resource.h"
 
-#pragma comment (lib, "E:\\D3D9\\d3d9.lib")
-#pragma comment (lib, "E:\\D3D9\\d3dx9.lib")
 #pragma comment (lib, "winmm.lib")
 
 //#pragma comment(linker, "/FORCE:MULTIPLE")
@@ -20,6 +17,10 @@
 
 #define LODWORD(_qw)    ((DWORD)(_qw))
 #define HIDWORD(_qw)    ((DWORD)(((_qw) >> 32) & 0xffffffff))
+
+#pragma comment(linker, "\"/manifestdependency:type='Win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' processorArchitecture='X86' publicKeyToken='6595b64144ccf1df' language='*'\"")
+// whats the dependency identity for direct3d
+// but why should i care
 
 void * __cdecl operator new(unsigned int bytes)
 {
@@ -95,11 +96,11 @@ ULONGLONG muhLookupTable(char*mem, char*id)
 	return MAKELLONG(_byteswap_ulong(len), _byteswap_ulong(addr));
 }
 
-static bool playSnd(LPCSTR fname)
+static bool playSnd(char*SFXx)
 {
-	return PlaySound(fname,
+	return PlaySound(SFXx,
 		GetModuleHandle(NULL),
-		SND_ASYNC | SND_FILENAME | SND_NOWAIT);
+		SND_ASYNC | SND_MEMORY | SND_NOWAIT);
 }
 
 static void NewTexture(LPCSTR fname, D3DFORMAT fmt, LPDIRECT3DTEXTURE9 *tex)
@@ -108,12 +109,6 @@ static void NewTexture(LPCSTR fname, D3DFORMAT fmt, LPDIRECT3DTEXTURE9 *tex)
 		D3DX_DEFAULT, 0, fmt, D3DPOOL_DEFAULT, D3DX_DEFAULT,
 		D3DX_DEFAULT, D3DCOLOR_XRGB(255, 0, 255), NULL, NULL, tex);
 }
-
-/*void WinMainCRTStartup()
-{
-	int Result = WinMain(GetModuleHandle(0), 0, 0, 0);
-	ExitProcess(Result);
-}*/
 
 static LRESULT CALLBACK WindowProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
 
@@ -159,7 +154,6 @@ int WINAPI WinMain(HINSTANCE hInstance,
 		common_gfx[0] = LoadBitmap(hInstance, MAKEINTRESOURCE(COM_GFX_LD0));
 		common_gfx[1] = LoadBitmap(hInstance, MAKEINTRESOURCE(COM_GFX_LD1));
 		int_hwnd[1] = CreateWindowExA(0, "static", "COM_GFX_LD0", WS_CHILD | WS_VISIBLE | SS_BITMAP, 16, 40, 21, 22, hWnd, 0, hInstance, common_gfx[0]);
-		//int_hwnd[2] = CreateWindowExA(0, "static", "COM_GFX_LD1", WS_CHILD | WS_VISIBLE | SS_BITMAP, 16, 66, 21, 22, hWnd, 0, hInstance, 0);
 		SendMessage(int_hwnd[1], STM_SETIMAGE, IMAGE_BITMAP, (LPARAM)common_gfx[0]);
 	}
 
@@ -205,18 +199,6 @@ int WINAPI WinMain(HINSTANCE hInstance,
 		UpdateWindow(hWnd);
 
 		// FILE LOADING
-		/**
-		{
-			FILE*file;
-			fopen_s(&file, "STR", "rb");
-			STR = new char[0x10000];
-			if (fread_s(STR, 0x200, 1, 0x200, file))
-			{
-				//xor(STR, 0x200, xorkey, xorkle);
-				SetWindowText(hWnd, STR + LODWORD(muhLookupTable(STR, "TITLE")));
-			}
-		}
-		/**/
 		{
 			HANDLE file;
 			file = CreateFile("STR", GENERIC_READ, FILE_SHARE_READ, 0,

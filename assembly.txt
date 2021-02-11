@@ -69,6 +69,7 @@
 3F - cpy
 40 - jmp
 
+7X - res(ource from STR,GFX,etc)
 7A - key
 7B - mouse
 7C - sleep
@@ -76,4 +77,5 @@
 7E - sound
 7F - exit
 
-
+ill figure itout
+me smart so awsom yes yeah
